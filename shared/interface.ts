@@ -2,12 +2,12 @@ import * as alt from 'alt-shared';
 
 declare module '@Shared/types/character.js' {
     export interface Character {
-        phoneno?: number;
+        phoneId?: string;
     }
 }
 
 export interface IPhoneCore {
-    _id?: string;
+    _id: string;
     phoneno: number;
     characterId: string;
     battery: number;
@@ -15,6 +15,14 @@ export interface IPhoneCore {
 }
 
 export interface IPhone extends IPhoneCore {
+    settings?: {
+        wallpaper?: 'default';
+        ringtone?: 'default';
+        isAirplaneMode?: false;
+        isDoNotDisturb?: false;
+        isDarkMode?: false;
+        isMuted?: false;
+    };
     passcode?: number;
     simProvider?: keyof T_ListOfSimProviders;
 }
@@ -34,6 +42,7 @@ export interface IPhoneApp<T extends keyof T_ListOfApps = keyof T_ListOfApps> {
 export interface T_PhoneAppStatus {
     installed: 1;
     notinstalled: 2;
+    disabled: 3;
 }
 
 export interface T_ListOfApps {
